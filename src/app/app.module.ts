@@ -12,11 +12,12 @@ import { RoomDetailComponent } from './room-detail/room-detail.component';
 import { PostRoomComponent } from './post-room/post-room.component';
 import { PostRoomPanelComponent } from './post-room-panel/post-room-panel.component';
 import { PostRoomDetailsComponent } from './post-room-details/post-room-details.component';
-import { ListRoomsComponent } from './list-rooms/list-rooms.component';
+import { ListRoomsComponent } from './rooms/list-rooms/list-rooms.component';
 import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule }     from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
+import { RoomsDetailComponent } from './rooms-detail/rooms-detail.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { LoginComponent } from './login/login.component';
     RegisterComponent,
     DashboardComponent,
     LoginComponent,
+    RoomsDetailComponent,
   ],
   imports: [
     BrowserModule,

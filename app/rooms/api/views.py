@@ -1,16 +1,22 @@
 
 from rest_framework.views import APIView
-from rest_framework import generics, mixins
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
-from django.http import HttpResponse
-from django.db.models import Q
+
 from .serializers import RoomSerializer
 from django.contrib.auth import get_user_model
-from rest_framework.response import Response
+from rest_framework.response import Response as resp  # This was necessary because it was calling
 from rest_framework import status
 from rooms.models import Room
 
 class RoomDetailView(APIView):
+    def get(self,request,id =None):
+        print("I get here!!" + str(id))
+        try:
+            queryset = Room.objects.filter(id=id)
+            serializer = RoomSerializer(queryset, many=True)
+            return resp(serializer.data)
+        except Room.DoesNotExist as e:
+            return resp({"error": "Room not found."}, status=404)
+
     def post(self,request,*args,**kwargs):
         room_serializer = RoomSerializer(data=request.data)
         if room_serializer.is_valid():
@@ -22,7 +28,7 @@ class RoomDetailView(APIView):
         try:
             tab = Room.objects.get(id=id)
             tab.delete()
-            return HttpResponse(status=204)
+            return resp(status=204)
         except Room.DoesNotExist as e:
             return Response({"error": "Given Tab object not found."}, status=404)
 

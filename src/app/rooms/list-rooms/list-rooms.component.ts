@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BookingsService } from '../bookings.service';
-import { Listing } from '../listing'
+import { Listing } from '../../listing'
+import { RoomService } from '../../room.service'
+
 
 @Component({
   selector: 'app-list-rooms',
@@ -10,13 +11,13 @@ import { Listing } from '../listing'
 
 export class ListRoomsComponent implements OnInit {
 
-  constructor(private bookingServie: BookingsService) { }
+  constructor(private roomService: RoomService) { }
   listings: any = [];
   ngOnInit() {
     this.getRoomsListing()
   }
   getRoomsListing(){
-    this.bookingServie.getListings().subscribe(
+    this.roomService.getRooms().subscribe(
       (data) => {
         for (const listing of (data as any)) {
           this.listings.push(new Listing(listing.id, listing.city, listing.state, listing.guest_count, listing.name))

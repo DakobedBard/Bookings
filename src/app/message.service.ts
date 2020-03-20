@@ -5,10 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class MessageService {
   constructor() { }
-  setQuery(){
-
-  }
-  getQuery(){
- 
+  messages: string[] = [];
+  add(message: string) {
+    this.messages.push(message);
   }
 }

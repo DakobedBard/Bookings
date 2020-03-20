@@ -4,6 +4,9 @@ export class Listing {
     city : string
     state: string
     guest_count: number
+    address: string
+    bed_count: number
+    bath_count: number
 
     constructor(room_id: number, city: string, state: string, guest_count:number, property_name: string){
         this.room_id = room_id
