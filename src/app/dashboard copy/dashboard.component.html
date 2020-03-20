@@ -1,0 +1,33 @@
+<mat-grid-list cols="5" rowHeight="150px">
+    <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="5"
+      style="background-color: orange;">
+
+      <mat-card >
+        <mat-card-content>
+          <app-bookings-search>
+          </app-bookings-search>
+        </mat-card-content>
+      </mat-card>
+      
+
+      <mat-card >
+        <mat-card-content>
+          <app-list-rooms> </app-list-rooms>
+        </mat-card-content>
+      </mat-card>
+
+    </mat-grid-tile>
+    <mat-grid-tile
+    [colspan]="2"
+    [rowspan]="5" style="background-color: black;">
+    
+    <mat-card style="width: 400px; height: 450px;">
+      <mat-card-content>
+        <!-- <app-post-room-panel></app-post-room-panel> -->
+        <app-post-room></app-post-room>
+      </mat-card-content>
+     </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>

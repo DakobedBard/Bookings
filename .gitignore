@@ -1,0 +1,12 @@
+node_modules
+bookings/__pycache__/
+bookings/app/reservations/migrations/
+bookings/app/users/migrations/
+bookings/app/rooms/migrations/
+bookings/app/payments/migrations/
+.idea
+.idea/
+*.iml
+*.swp
+*.swo
+./stale_outputs_checked
