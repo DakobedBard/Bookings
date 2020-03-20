@@ -8,7 +8,7 @@ import { HttpClientModule,HTTP_INTERCEPTORS }    from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 import { BookingsSearchComponent } from './bookings-search/bookings-search.component';
-import { RoomDetailComponent } from './room-detail/room-detail.component';
+import { RoomDetailComponent } from './rooms/room-detail/room-detail.component';
 import { PostRoomComponent } from './post-room/post-room.component';
 import { PostRoomPanelComponent } from './post-room-panel/post-room-panel.component';
 import { PostRoomDetailsComponent } from './post-room-details/post-room-details.component';
@@ -17,7 +17,6 @@ import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule }     from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { RoomsDetailComponent } from './rooms-detail/rooms-detail.component';
 
 
 @NgModule({
@@ -32,7 +31,7 @@ import { RoomsDetailComponent } from './rooms-detail/rooms-detail.component';
     RegisterComponent,
     DashboardComponent,
     LoginComponent,
-    RoomsDetailComponent,
+    RoomDetailComponent,
   ],
   imports: [
     BrowserModule,

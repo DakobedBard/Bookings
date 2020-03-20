@@ -21,16 +21,16 @@ class RoomDetailView(APIView):
         room_serializer = RoomSerializer(data=request.data)
         if room_serializer.is_valid():
             room_serializer.save()
-            return Response(room_serializer.data, status=status.HTTP_201_CREATED)
+            return resp(room_serializer.data, status=status.HTTP_201_CREATED)
         else:
-            return Response(room_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return resp(room_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     def delete(self,request,id =None):
         try:
-            tab = Room.objects.get(id=id)
-            tab.delete()
-            return resp(status=204)
+            room = Room.objects.get(id=id)
+            room.delete()
+            return resp("Deleted room with id: " + str(id), status=204)
         except Room.DoesNotExist as e:
-            return Response({"error": "Given Tab object not found."}, status=404)
+            return resp({"error": "Given Tab object not found."}, status=404)
 
 
 from rest_framework import viewsets

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Listing } from '../../listing'
+import { Room } from '../../room'
 import { RoomService } from '../../room.service'
 
 
@@ -12,15 +12,15 @@ import { RoomService } from '../../room.service'
 export class ListRoomsComponent implements OnInit {
 
   constructor(private roomService: RoomService) { }
-  listings: any = [];
+  rooms: any = [];
   ngOnInit() {
     this.getRoomsListing()
   }
   getRoomsListing(){
     this.roomService.getRooms().subscribe(
       (data) => {
-        for (const listing of (data as any)) {
-          this.listings.push(new Listing(listing.id, listing.city, listing.state, listing.guest_count, listing.name))
+        for (const room of (data as any)) {
+          this.rooms.push(new Room(room.id, room.city, room.state, room.guest_count, room.name))
         }
       },
       (err) => {  
@@ -28,5 +28,4 @@ export class ListRoomsComponent implements OnInit {
       }
     );
   }
-
 }
