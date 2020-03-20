@@ -14,7 +14,10 @@ import { MatToolbarModule,
   MatInputModule,
   MatTabsModule,
   MatSelectModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatDatepickerModule, 
+  MatNativeDateModule 
+
   
 } from '@angular/material';
 import { MatBadgeModule} from '@angular/material/badge';
@@ -35,7 +38,9 @@ const MaterialsComponents = [
   MatInputModule,
   MatTabsModule,
   MatSelectModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatDatepickerModule, 
+  MatNativeDateModule 
 ];
 
 

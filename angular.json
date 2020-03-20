@@ -124,8 +124,5 @@
       }
     }
   },
-  "defaultProject": "angular-gmap",
-  "cli": {
-    "analytics": "b51b1437-b5f2-421c-839c-fdf90c7857ff"
-  }
+  "defaultProject": "angular-gmap"
 }

@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common'
+import { Component, AfterViewInit, ViewChild, ElementRef } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
-export class AppComponent {
-  title = 'Angular MIR';
-  constructor(public router:Router, public location: Location){}
+export class AppComponent implements AfterViewInit {
+  tiles = [
+    {text: 'One', cols: 3, rows: 8, color: '#142A5C'},
+    {text: 'Two', cols: 2, rows: 8, color: '#142A5C'},
+
+  ];
+  ngAfterViewInit(): void {
+
+  }
 
 }
-
-
-
