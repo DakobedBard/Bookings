@@ -10,8 +10,6 @@ import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 import { BookingsSearchComponent } from './bookings-search/bookings-search.component';
 import { RoomDetailComponent } from './rooms/room-detail/room-detail.component';
 import { PostRoomComponent } from './post-room/post-room.component';
-import { PostRoomPanelComponent } from './post-room-panel/post-room-panel.component';
-import { PostRoomDetailsComponent } from './post-room-details/post-room-details.component';
 import { ListRoomsComponent } from './rooms/list-rooms/list-rooms.component';
 import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule }     from './app-routing.module';
@@ -25,8 +23,6 @@ import { LoginComponent } from './login/login.component';
     BookingsSearchComponent,
     RoomDetailComponent,
     PostRoomComponent,
-    PostRoomPanelComponent,
-    PostRoomDetailsComponent,
     ListRoomsComponent,
     RegisterComponent,
     DashboardComponent,

@@ -19,11 +19,13 @@ class RoomDetailView(APIView):
 
     def post(self,request,*args,**kwargs):
         room_serializer = RoomSerializer(data=request.data)
+        print("They type of request.data " + str(type((request.data))))
         if room_serializer.is_valid():
             room_serializer.save()
             return resp(room_serializer.data, status=status.HTTP_201_CREATED)
         else:
             return resp(room_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def delete(self,request,id =None):
         try:
             room = Room.objects.get(id=id)

@@ -28,7 +28,7 @@ export class RoomService {
     );
   }
   
-  public postRoom(room){
+  postRoom(room){
     return this.httpClient.post(`${this.djangoURL}/rooms/rooms/`,room, {headers:headers}).pipe(
       tap(data => {
         let obj = JSON.parse(JSON.stringify(data));
