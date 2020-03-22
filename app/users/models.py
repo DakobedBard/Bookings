@@ -16,7 +16,6 @@ class Guest(models.Model):
 class Host(models.Model):
     username = models.CharField(max_length=30, default="firstTab.txt")
     password = models.CharField(max_length=30, default = "pass123")
-    location = models.CharField(max_length=30, default="Nebrasa")
     first_name = models.CharField(max_length=30, default="Joseph")
     last_name = models.CharField(max_length=30, default="Dulapp")
     email = models.CharField(max_length=30, default="Nebrasa")
