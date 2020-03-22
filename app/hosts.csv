@@ -1,6 +1,7 @@
-username,password,first_name,last_name,password,email,phone_number,state,city,address,zip
-BeenyAb,iksarman,Jerry,Borde,iksarman,benny@gmail.com,206-291-3213,Michigan,Ann Arbor,38 Oak street,97231
-Halahh,iksarman,Halbert,Dunahr,iksarman,hal3a@gmail.com,621-323-2311,West Virginia,Bonaha,456 Highway 67,23222
-Nhand,iksarman,Nhan,Nguygn,iksarman,gordo33@gmail.com,206-788-7654,Washington,Seattle,4587 88th ave W ,57232
-Lhandf,iksarman,Lesi,Erickson,iksarman,see31da@gmail.com,666-232-2323,Texas,Austin,5th Alamo Drive ,23111
-Saraha12,iksarman,Sarah,Rogers,iksarman,sararogers@gmail.com,123-876-5491,Florida,Miami,875 Siesta Place,76991
+username,password,first_name,last_name,email,phone_number,state,city,address,zip
+BeenyAb,iksarman,Jerry,Borde,benny@gmail.com,206-291-3213,Michigan,Ann Arbor,38 Oak street,97231
+Halahh,iksarman,Halbert,Dunahr,hal3a@gmail.com,621-323-2311,West Virginia,Bonaha,456 Highway 67,23222
+Nhand,iksarman,Nhan,Nguygn,gordo33@gmail.com,206-788-7654,Washington,Seattle,4587 88th ave W ,57232
+Lhandf,iksarman,Lesi,Erickson,see31da@gmail.com,666-232-2323,Texas,Austin,5th Alamo Drive ,23111
+Saraha12,iksarman,Sarah,Rogers,sararogers@gmail.com,123-876-5491,Florida,Miami,875 Siesta Place,76991
+
