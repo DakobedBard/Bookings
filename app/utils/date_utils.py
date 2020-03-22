@@ -12,7 +12,7 @@ def date_range_list(startdate, enddate):
     delta = enddate - startdate  # as timedelta
     days = []
     for i in range(delta.days + 1):
-        days = startdate + timedelta(days=i)
+        days.append(startdate + timedelta(days=i))
 
     return days
 
