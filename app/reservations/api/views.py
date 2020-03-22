@@ -7,11 +7,34 @@ from .serializers import ReserverationSerializer
 from rest_framework import status
 from reservations.models import Reservation
 from rest_framework import viewsets
-from rooms.models import Room
+
 from rest_framework.response import Response
 from utils.date_utils import date_range_list
-from datetime import date, timedelta
 
+from datetime import date, timedelta
+from rooms.models import Room
+
+startdate = date(2020, 4, 13)  # start date
+enddate = date(2020, 4, 16)  # start date
+
+
+def add_dates(roomID, checkInDate, checkOutDate):
+    room = Room.objects.get(id=roomID)
+
+    dates = date_range_list(checkInDate, checkOutDate)
+    [room.reserved_dates.append(str(day)) for day in dates]
+
+    room.save()
+
+def remove_dates(roomID, checkInDate, checkOutDate):
+    room = Room.objects.get(id=roomID)
+    dates = date_range_list(checkInDate, checkOutDate)
+    [room.reserved_dates.remove(str(day)) for day in dates]
+    room.save()
+
+add_dates(31, startdate, enddate)
+
+remove_dates(31, '2020-02-05','2020-03,05')
 class ReservationDetailView(APIView):
     def post(self,request,*args,**kwargs):
         print("YOO" + "dfd")
@@ -34,6 +57,7 @@ class ReservationDetailView(APIView):
         else:
             print(reservation_serializer.error_messages)
             return Response(reservation_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def delete(self,request,id =None):
         try:
             tab = Reservation.objects.get(id=id)
