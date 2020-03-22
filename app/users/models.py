@@ -1,7 +1,8 @@
 from django.db import models
 
 class Guest(models.Model):
-    name = models.CharField(max_length=30, default="firstTab.txt")
+    first_name = models.CharField(max_length=30, default="Joseph")
+    last_name = models.CharField(max_length=30, default="Dulapp")
     email = models.CharField(max_length=30, default="")
     phone_number = models.CharField(max_length=15, default=" ")
     username = models.CharField(max_length=30)
@@ -16,7 +17,8 @@ class Host(models.Model):
     username = models.CharField(max_length=30, default="firstTab.txt")
     password = models.CharField(max_length=30, default = "pass123")
     location = models.CharField(max_length=30, default="Nebrasa")
-    name = models.CharField(max_length=30, default="firstTab.txt")
+    first_name = models.CharField(max_length=30, default="Joseph")
+    last_name = models.CharField(max_length=30, default="Dulapp")
     email = models.CharField(max_length=30, default="Nebrasa")
     phone_number = models.CharField(max_length=15, default=" ")
     address = models.CharField(max_length=60, default='8009 39th AVE NE')
