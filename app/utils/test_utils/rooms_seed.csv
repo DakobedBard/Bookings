@@ -1,0 +1,5 @@
+host,name,Santa Cruz,city,state,lat,long,property_type,guest_count,bed_count,bath_count,description,available_date,price,published
+1,Beach House,34 Aloha Drive,Half Moon Bay,California,-45,98,house,2,1,1,Excelent beach house,2020-04-02,120,2020-03-22
+1,Forest Cabin,235 Saratoga Highway ,Santa Cruz,California,-45,98.3,cabin,3,3,1,cabin in the woods,2020-04-02,75,2020-03-22
+2,Ski Mansion,12 4th Ave,Veil,Colorado,-41,93,house,8,8,2,"3 minutes from the slopes, 4 bedrooms with 8 beds ",2020-04-02,320,2020-03-22
+3,Swanky Condo,126 128th St,New York,New York,-37,96.23,condo,3,2,1,swanky condo with view of skyline and central park,2020-04-02,220,2020-03-22
