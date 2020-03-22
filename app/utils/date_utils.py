@@ -13,9 +13,7 @@ def date_range_list(startdate, enddate):
     days = []
     for i in range(delta.days + 1):
         days.append(startdate + timedelta(days=i))
-
     return days
-
 
 startdate = date(2020, 4, 1)  # start date
 enddate = date(2020, 4, 5)  # end date

@@ -1,4 +1,3 @@
-
 from rest_framework.views import APIView
 from rest_framework import generics, mixins
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
@@ -10,17 +9,16 @@ from rest_framework import viewsets
 
 from rest_framework.response import Response
 from utils.date_utils import date_range_list
-
 from datetime import date, timedelta
 from rooms.models import Room
 
-startdate = date(2020, 4, 13)  # start date
-enddate = date(2020, 4, 16)  # start date
 
+'''
+This could and should be moved to a method on the Room model
+'''
 
 def add_dates(roomID, checkInDate, checkOutDate):
     room = Room.objects.get(id=roomID)
-
     dates = date_range_list(checkInDate, checkOutDate)
     [room.reserved_dates.append(str(day)) for day in dates]
 
@@ -32,9 +30,6 @@ def remove_dates(roomID, checkInDate, checkOutDate):
     [room.reserved_dates.remove(str(day)) for day in dates]
     room.save()
 
-add_dates(31, startdate, enddate)
-
-remove_dates(31, '2020-02-05','2020-03,05')
 class ReservationDetailView(APIView):
     def post(self,request,*args,**kwargs):
         print("YOO" + "dfd")
@@ -46,6 +41,7 @@ class ReservationDetailView(APIView):
             startDate = reservation_serializer.validated_data['checkin_date']
             endDate = reservation_serializer.validated_data['checkout_date']
             dates = date_range_list(startDate, endDate)
+            add_dates(startDate, endDate, dates)
 
             if len(dates) == 0:
                 return Response("Checkout date is before the checkin date", status=status.HTTP_400_BAD_REQUEST)

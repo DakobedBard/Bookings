@@ -22,10 +22,7 @@ export class RoomService {
   
   getRoom(id: number): Observable<Room> {
     const url = `${this.djangoURL}/rooms/${id}/get`;
-    return this.httpClient.get<Room>(url).pipe(
-      tap(_ => this.log(`fetched room id=${id}`)),
-      catchError(this.handleError<Room>(`getRoom id=${id}`))
-    );
+    return this.httpClient.get<Room>(url)
   }
   
   postRoom(room){
