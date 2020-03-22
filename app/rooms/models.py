@@ -2,6 +2,8 @@ from django.db import models
 from users.models import Host
 import datetime
 from django.utils.timezone import now
+from django.contrib.postgres.fields import JSONField, ArrayField
+
 class Room(models.Model):
     host = models.ForeignKey(Host, on_delete=models.CASCADE)
     name = models.CharField(max_length=30, default="Room1")
@@ -20,4 +22,5 @@ class Room(models.Model):
     auto_approve = models.BooleanField(default=True)
     price = models.IntegerField(default=300)
     published = models.DateField(("Date"), default=datetime.date.today)
+    reserved_dates = ArrayField(JSONField(default=list), null=True)
 

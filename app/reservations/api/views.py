@@ -7,15 +7,20 @@ from .serializers import ReserverationSerializer
 from rest_framework import status
 from reservations.models import Reservation
 from rest_framework import viewsets
+from rooms.models import Room
 from rest_framework.response import Response
+from utils.date_utils import date_range_list
 
 class ReservationDetailView(APIView):
     def post(self,request,*args,**kwargs):
-        print("YOO")
+        print("YOO" + "dfd")
         file_serializer = ReserverationSerializer(data=request.data)
-        print("request data " + str(request.data))
+        print("request data " + str(request.data['room']))
 
         if file_serializer.is_valid():
+            roomID = request.data['room']
+            room = Room.objects.get(id=roomID)
+            print("the rooms name is " + room.name)
             file_serializer.save()
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
