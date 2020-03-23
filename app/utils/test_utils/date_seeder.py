@@ -1,6 +1,7 @@
 import csv
 from users.models import Host, Guest
 from rooms.models import Room
+from reservations.models import Reservation
 from django.db.models import Min
 
 class DataSeeder:
@@ -17,7 +18,9 @@ class DataSeeder:
             parse_method = DataSeeder.parse_guest_csv_row
         elif model == 'room':
             parse_method = DataSeeder.parse_room_csv_row
-        else: return False
+        elif model == 'reservations':
+            parse_method = DataSeeder.parse_reservations_csv_row
+        else: return
 
         with open(csv_file) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
@@ -65,10 +68,8 @@ class DataSeeder:
 
     @staticmethod
     def parse_room_csv_row(row):
-
         minID =  Host.objects.all().aggregate(Min('id'))['id__min'] #
         hostID = int(row[0]) + minID - 1  # Account for the offset
-
         room = Room()
         room.host = Host.objects.get(id=hostID)
 
@@ -89,13 +90,24 @@ class DataSeeder:
         room.save()
 
     @staticmethod
+    def parse_reservations_csv_row(row):
+        reservation = Reservation()
+        minroomID =  Room.objects.all().aggregate(Min('id'))['id__min'] #
+        minguestID = Guest.objects.all().aggregate(Min('id'))['id__min'] #
+
+        reservation.room = Room.objects.get(id=int(row[0])+minroomID-1)
+        reservation.guest = Guest.objects.get(id=int(row[1])+minguestID-1)
+        reservation.checkin_date = row[2]
+        reservation.checkout_date = row[3]
+        reservation.guest_count = row[4]
+        reservation.guest_count = row[5]
+        reservation.save()
+
+    @staticmethod
     def default_seed():
-        DataSeeder.seed_data('host', 'hosts.csv')
-        DataSeeder.seed_data('guest', 'guests.csv')
-        DataSeeder.seed_data('room', 'rooms.csv')
+        # DataSeeder.seed_data('host', 'hosts.csv')
+        # DataSeeder.seed_data('guest', 'guests.csv')
+        # DataSeeder.seed_data('room', 'rooms.csv')
+        DataSeeder.seed_data('reservations','reservations.csv')
 
-
-# DataSeeder.seed_data('host', 'hosts.csv')
-# DataSeeder.seed_data('guest', 'guests.csv')
-# DataSeeder.seed_data('room', 'rooms.csv')
-
+DataSeeder.default_seed()

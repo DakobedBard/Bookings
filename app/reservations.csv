@@ -1,0 +1,5 @@
+room,guest,checkin_date,checkout_date,guest_count,status
+1,2,2020-04-07,2020-04-08,1,reserved
+1,1,2020-04-10,2020-04-12,1,reserved
+2,3,2020-04-10,2020-04-10,1,reserved
+

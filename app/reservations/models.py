@@ -11,10 +11,10 @@ class ReservationStatus(str, Enum):
     serialization problems.
     '''
 
-    pending = "Pending"
-    reserved = "Reserved"
-    cancelled = "Cancelled"
-    awaiting = "Awaiting"
+    pending = "pending"
+    reserved = "reserved"
+    cancelled = "cancelled"
+    awaiting = "awaiting"
 
 class Reservation(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
