@@ -36,7 +36,6 @@ class DataSeeder:
     @staticmethod
     def parse_host_csv_row(row):
         host = Host()
-
         host.username = row[0]
         host.password = row[1]
         host.first_name = row[2]
@@ -52,7 +51,6 @@ class DataSeeder:
     @staticmethod
     def parse_guest_csv_row(row):
         guest = Guest()
-
         guest.username = row[0]
         guest.password = row[1]
         guest.first_name = row[2]
@@ -70,7 +68,7 @@ class DataSeeder:
 
         minID =  Host.objects.all().aggregate(Min('id'))['id__min'] #
         hostID = int(row[0]) + minID - 1  # Account for the offset
-    
+
         room = Room()
         room.host = Host.objects.get(id=hostID)
 
@@ -90,7 +88,14 @@ class DataSeeder:
         room.published = row[14]
         room.save()
 
-DataSeeder.seed_data('host', 'hosts.csv')
-DataSeeder.seed_data('guest', 'guests.csv')
-DataSeeder.seed_data('room', 'rooms.csv')
+    @staticmethod
+    def default_seed():
+        DataSeeder.seed_data('host', 'hosts.csv')
+        DataSeeder.seed_data('guest', 'guests.csv')
+        DataSeeder.seed_data('room', 'rooms.csv')
+
+
+# DataSeeder.seed_data('host', 'hosts.csv')
+# DataSeeder.seed_data('guest', 'guests.csv')
+# DataSeeder.seed_data('room', 'rooms.csv')
 

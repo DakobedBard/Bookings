@@ -25,3 +25,17 @@ class RoomTestCase(APITestCase):
         )
         self.assertEqual(host_create_response.status_code, status.HTTP_201_CREATED)
 
+    def test_create_guest(self):
+        host_create_response = self.client.post(
+            path="http://127.0.0.1:8000/users/create_guest/",
+            data=json.dumps({
+                "username":"JmanJack",
+                "password":'iksarman',
+                'phone_number':'206-321-2211',
+                'state':'Michigan',
+                'city': 'Ann Arbor',
+                'address': '38 Oak street'
+            }),
+            content_type='application/json'
+        )
+        self.assertEqual(host_create_response.status_code, status.HTTP_201_CREATED)

@@ -1,1 +1,1 @@
-sudo docker exec -it django python manage.py test
+sudo docker exec -it django python manage.py test $1
