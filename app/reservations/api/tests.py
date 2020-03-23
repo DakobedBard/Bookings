@@ -25,19 +25,19 @@ class RoomTestCase(APITestCase):
         # The first guest in the database will make a booking
         guestID = Guest.objects.all().aggregate(Min('id'))['id__min'] #
         roomID = Room.objects.all().aggregate(Min('id'))['id__min']  #
-        checkin_date = '2020-04-20'
-        checkout_date = '2020-04-23'
 
         booking_create_response = self.client.post(
             path="http://127.0.0.1:8000/reservations/book/",
             data=json.dumps({
                 "room":roomID,
-                "password":'iksarman',
-                'phone_number':'206-321-2211',
-                'state':'Michigan',
-                'city': 'Ann Arbor',
-                'address': '38 Oak street'
+                "guest":guestID,
+                'checkin_date':'2020-04-15',
+                'checkout_date': '2020-04-18'
             }),
             content_type='application/json'
         )
-        # self.assertEqual(host_create_response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(booking_create_response.status_code, status.HTTP_201_CREATED)
+
+        # Assert that the dates were appeneded to the list
+        room = Room.objects.get(id=roomID)
+        self.assertEqual(len(room.reserved_dates), 4)
