@@ -1,10 +1,36 @@
 
 
 import csv
-from users.models import Host
+from users.models import Host, Guest
 from rooms.models import Room
 
 class DataSeeder:
+
+    @staticmethod
+    def seed_data(model, csv_file):
+        if model == 'host':
+            parse_method = DataSeeder.parse_host_csv_row
+        elif model == 'guest':
+            parse_method = DataSeeder.parse_guest_csv_row
+        elif model == 'rooms':
+            parse_method = DataSeeder.parse_room_csv_row
+        else: return False
+
+        with open(csv_file) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count == 0:
+                    line_count += 1
+                else:
+                    try:
+                        parse_method(row)
+                        line_count += 1
+                    except Exception as e:
+                        print(e)
+
+
+
     @staticmethod
     def seed_host(host_csv):
         with open(host_csv) as csv_file:
@@ -54,6 +80,24 @@ class DataSeeder:
         # host.address = row[8]
         host.zip = int(row[9])
         host.save()
+
+    @staticmethod
+    def parse_guest_csv_row(row):
+        host = Host()
+
+        host.username = row[0]
+        host.password = row[1]
+        host.first_name = row[2]
+        host.last_name = row[3]
+        host.email = row[4]
+        host.phone_number = row[5]
+        host.state = row[6]
+        host.city = row[7]
+        print("row 8 " + row[8])
+        # host.address = row[8]
+        host.zip = int(row[9])
+        host.save()
+
 
     @staticmethod
     def parse_room_csv_row(row):
