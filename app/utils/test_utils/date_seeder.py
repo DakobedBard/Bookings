@@ -1,7 +1,7 @@
 import csv
 from users.models import Host, Guest
 from rooms.models import Room
-from django.db.models import Avg, Max, Min, Sum
+from django.db.models import Min
 
 class DataSeeder:
     '''

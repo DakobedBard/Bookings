@@ -22,5 +22,5 @@ class Room(models.Model):
     auto_approve = models.BooleanField(default=True)
     price = models.IntegerField(default=300)
     published = models.DateField(("Date"), default=datetime.date.today)
-    reserved_dates = ArrayField(JSONField(default=list), null=True)
+    reserved_dates = ArrayField(JSONField(default=list), default=list)
 

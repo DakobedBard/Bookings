@@ -18,6 +18,7 @@ class ReservationStatus(str, Enum):
 
 class Reservation(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    guest = models.ForeignKey(Guest, on_delete=models.CASCADE, default=1)
     checkin_date = models.DateField(("Date"), default=datetime.date.today)
     checkout_date = models.DateField(("Date"), default=datetime.date.today)
     guest_count = models.IntegerField(default=1)
