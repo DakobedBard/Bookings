@@ -1,10 +1,13 @@
-
-
 import csv
 from users.models import Host, Guest
 from rooms.models import Room
+from django.db.models import Avg, Max, Min, Sum
 
 class DataSeeder:
+    '''
+    Data seeding class with methods for seeding specific tables
+
+    '''
 
     @staticmethod
     def seed_data(model, csv_file):
@@ -12,7 +15,7 @@ class DataSeeder:
             parse_method = DataSeeder.parse_host_csv_row
         elif model == 'guest':
             parse_method = DataSeeder.parse_guest_csv_row
-        elif model == 'rooms':
+        elif model == 'room':
             parse_method = DataSeeder.parse_room_csv_row
         else: return False
 
@@ -25,41 +28,7 @@ class DataSeeder:
                 else:
                     try:
                         parse_method(row)
-                        line_count += 1
-                    except Exception as e:
-                        print(e)
-
-
-
-    @staticmethod
-    def seed_host(host_csv):
-        with open(host_csv) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0
-            for row in csv_reader:
-                if line_count == 0:
-
-                    line_count += 1
-                else:
-                    try:
-                        DataSeeder.parse_host_csv_row(row)
-                        line_count += 1
-                    except Exception as e:
-                        print(e)
-
-    @staticmethod
-    def seed_rooms(rooms_csv):
-        with open(rooms_csv) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0
-            for row in csv_reader:
-                if line_count == 0:
-
-                    line_count += 1
-                else:
-                    try:
-                        DataSeeder.parse_room_csv_row(row)
-                        print("save a room")
+                        print("I processed a row of " + model)
                         line_count += 1
                     except Exception as e:
                         print(e)
@@ -76,35 +45,34 @@ class DataSeeder:
         host.phone_number = row[5]
         host.state = row[6]
         host.city = row[7]
-        print("row 8 " + row[8])
-        # host.address = row[8]
+        host.address = row[8]
         host.zip = int(row[9])
         host.save()
 
     @staticmethod
     def parse_guest_csv_row(row):
-        host = Host()
+        guest = Guest()
 
-        host.username = row[0]
-        host.password = row[1]
-        host.first_name = row[2]
-        host.last_name = row[3]
-        host.email = row[4]
-        host.phone_number = row[5]
-        host.state = row[6]
-        host.city = row[7]
-        print("row 8 " + row[8])
-        # host.address = row[8]
-        host.zip = int(row[9])
-        host.save()
-
+        guest.username = row[0]
+        guest.password = row[1]
+        guest.first_name = row[2]
+        guest.last_name = row[3]
+        guest.email = row[4]
+        guest.phone_number = row[5]
+        guest.state = row[6]
+        guest.city = row[7]
+        guest.address = row[8]
+        guest.zip = int(row[9])
+        guest.save()
 
     @staticmethod
     def parse_room_csv_row(row):
+
+        minID =  Host.objects.all().aggregate(Min('id'))['id__min'] #
+        hostID = int(row[0]) + minID - 1  # Account for the offset
+    
         room = Room()
-        hostID = int(row[0]) + 44
-        host = Host.objects.get(id=hostID)
-        room.host = host
+        room.host = Host.objects.get(id=hostID)
 
         room.name = row[1]
         room.address = row[2]
@@ -121,6 +89,8 @@ class DataSeeder:
         room.price = int(row[13])
         room.published = row[14]
         room.save()
-#DataSeeder.seed_host('hosts.csv')
-DataSeeder.seed_rooms('rooms.csv')
+
+DataSeeder.seed_data('host', 'hosts.csv')
+DataSeeder.seed_data('guest', 'guests.csv')
+DataSeeder.seed_data('room', 'rooms.csv')
 
